@@ -7,15 +7,15 @@
  */
 function sumValues(num1, num2, add) {
     if (add) {
-        // changed "0" to "num1 + num2"
-        const result = num1 + num2;
+        // changed: "0" to "Number(num1) + Number(num2)
+        const result = Number(num1) + Number(num2);
 
-        // remove "result = num1 + num2;"
+        // removed: "result = num1 + num2;"
 
         return result;
     }
     else {
-        // changed "!add" to "false"
+        // changed: "!add" to "false"
         return false;
     }
 }
@@ -35,12 +35,15 @@ function discountPrices(prices, discount) {
     const discounted = []
     const length = prices.length;
     
-    // remove "let discountedPrice = 0" 
+    // removed: "let discountedPrice = 0" 
     
     for(let i = 0; i < length; i++) {
-        // "let" and replace "+=" with "="
+        // add: "let" 
+        // replaced: "+=" with "="
         let discountedPrice = prices[i] * (1 - discount);
-        discounted.push(discountedPrice);
+        // add: round to 2 decimals. rounding errors.
+        let finalPrice = Math.round(discountedPrice * 100) / 100;
+        discounted.push(finalPrice);
     }
 
     return discounted;
