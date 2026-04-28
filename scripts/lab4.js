@@ -7,14 +7,16 @@
  */
 function sumValues(num1, num2, add) {
     if (add) {
-        const result = 0;
+        const n1 = Number(num1);
+        const n2 = Number(num2)
 
-        result = num1 + num2;
-
-        return result;
+        if (isNaN(n1) || isNaN(n2)) {
+                return false;
+        }
+        return n1 + n2;
     }
     else {
-        return !add;
+        return false;
     }
 }
 
@@ -25,14 +27,18 @@ function sumValues(num1, num2, add) {
  * @returns An array of each price's new price, after the discount is applied. Or false, if prices array is empty.
  */
 function discountPrices(prices, discount) {
+    if (!Array.isArray(prices) || isNaN(Number(discount)) || prices.length === 0) {
+        return false;
+    }
+    
     const discounted = []
     const length = prices.length;
-    let discountedPrice = 0
+        
     for(let i = 0; i < length; i++) {
-        discountedPrice += prices[i] * (1 - discount);
-        discounted.push(discountedPrice);
+        let discountedPrice = prices[i] * (1 - discount);
+        let finalPrice = Math.round(discountedPrice * 100) / 100;
+        discounted.push(finalPrice);
     }
-
     return discounted;
 }
 
